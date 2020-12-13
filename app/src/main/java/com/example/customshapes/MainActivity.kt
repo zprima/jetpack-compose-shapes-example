@@ -53,6 +53,8 @@ fun App(){
         MyTriangle()
         Spacer(modifier = Modifier.size(20.dp))
         MyStarTrek()
+        Spacer(modifier = Modifier.size(20.dp))
+        MyMouse()
     }
 }
 
@@ -65,10 +67,10 @@ fun MyCircle(){
 
 @Composable
 fun MyRect(){
-    val density = AmbientDensity.current
+    val density = AmbientDensity.current.density
 
-    val w = remember { 100f * density.density }
-    val h = remember { 33f * density.density }
+    val w = remember { 100f * density }
+    val h = remember { 33f * density }
 
     Canvas(modifier = Modifier.size(100.dp), onDraw = {
         drawRect(color = Color.Black, size = Size(w, h), topLeft = Offset.Zero)
@@ -114,4 +116,13 @@ fun MyStarTrek(){
         border = BorderStroke(3.dp, Color.Black),
         modifier = Modifier.size(100.dp)
     ) { }
+}
+
+@Composable
+fun MyMouse(){
+    Canvas(modifier = Modifier.size(100.dp), onDraw = {
+        drawCircle(Color.Black, radius = 70f, center = Offset(size.width / 2f, size.height / 2f))
+        drawCircle(Color.Black, radius = 50f, center = Offset(size.width * 0.25f, size.height * 0.25f))
+        drawCircle(Color.Black, radius = 50f, center = Offset(size.width * 0.75f, size.height * 0.25f))
+    })
 }
